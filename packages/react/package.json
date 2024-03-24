@@ -1,6 +1,6 @@
 {
   "name": "@pompom/react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create typesafe design systems with powerful inline styles",
   "author": "Manan Tank",
   "license": "MIT",
