@@ -5,7 +5,8 @@
   "version": "0.0.0",
   "scripts": {
     "build": "turbo build",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "release": "pnpm run build && changeset publish"
   },
   "keywords": [],
   "license": "MIT",
