@@ -42,7 +42,7 @@ export type ConfigOptions<C extends Conditions, P extends Properties> = {
 	properties?: P;
 	/**
 	 * Prefix to apply to the generated CSS variables names in the returned `stylesheet` string.
-	 * The default is `p` which will generate variables like `--p1-on`, `--p1-off`, `--p2-on`, `--p2-off`, etc.
+	 * The default is `p` which will generate variables like `--p1-1`, `--p1-0`, `--p2-1`, `--p2-0`, etc.
 	 */
 	cssVariablePrefix?: string;
 };
@@ -64,14 +64,14 @@ export type PomPomStyle<C extends Conditions, P extends Properties> =
  */
 function getSelectorStylesheet(selector: string, id: string) {
 	const s = selector.replace('&', '*');
-	return `* { --${id}-off: initial; --${id}-on: ;} ${s} { --${id}-off: ; --${id}-on: initial; }`;
+	return `*{--${id}-0:initial;--${id}-1: ;} ${s}{--${id}-0: ;--${id}-1:initial;}`;
 }
 
 /**
  * Get the stylesheet required for defining given block ( @media, @supports, etc query )
  */
 function getBlockStylesheet(block: string, id: string) {
-	return `* { --${id}-off: initial; --${id}-on: ;} ${block} { * { --${id}-off: ; --${id}-on: initial; } }`;
+	return `*{--${id}-0:initial;--${id}-1: ;} ${block}{*{--${id}-0: ;--${id}-1:initial;}}`;
 }
 
 /**
@@ -79,7 +79,7 @@ function getBlockStylesheet(block: string, id: string) {
  * @returns
  */
 function getPropertyValue(varId: string, on: string, off?: string) {
-	return `var(--${varId}-on, ${on}) var(--${varId}-off, ${off || 'revert-layer'})`;
+	return `var(--${varId}-1,${on}) var(--${varId}-0,${off || 'revert-layer'})`;
 }
 
 // maps the condition name to generated css variable id
