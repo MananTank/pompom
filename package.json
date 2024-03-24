@@ -4,7 +4,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "turbo build"
+    "build": "turbo build",
+    "lint": "turbo lint"
   },
   "keywords": [],
   "license": "MIT",
